@@ -1,23 +1,32 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
-
-public class Solution {
+import java.io.*;
 
 
-    private static final Scanner scanner = new Scanner(System.in);
+class Solution {
+    public static void main(String[] argh) {
 
-    public static void main(String[] args) {
-        int N = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-        for (int i = 1; i < 11; i++) {
-            System.out.println(N + " x " + i + " = " + N * i);
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        for (int i = 0; i < t; i++) {
+
+            try {
+                long x = sc.nextLong();
+                System.out.println(x + " can be fitted in:");
+                if (x >= -128 && x <= 127) System.out.println("* byte");
+                //Complete the code
+                if (x >= -32768 && x <= 32767) System.out.println("* short");
+                if (x >= -2147483648 && x <= 2147483647) System.out.println("* int");
+                if (x >= -Math.pow(2, 63) && x <= Math.pow(2, 63) - 1) System.out.println("* long");
+                else System.out.println("can't be fitted anywhere.");
+            } catch (Exception e) {
+                System.out.println(sc.next() + " can't be fitted anywhere.");
+            }
+
         }
-
-        scanner.close();
     }
 }
+
+
+
