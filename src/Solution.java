@@ -1,17 +1,23 @@
-import java.util.Scanner;
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
 
 public class Solution {
 
-    public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("================================");
-        for(int i=0;i<3;i++){
-            String s1=sc.next();
-            int x=sc.nextInt();
-            //Complete this line
-            System.out.printf("%-15s%03d%n", s1, x);
-        }
-        System.out.println("================================");
 
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int N = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        for (int i = 1; i < 11; i++) {
+            System.out.println(N + " x " + i + " = " + N * i);
+        }
+
+        scanner.close();
     }
 }
