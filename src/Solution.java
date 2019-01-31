@@ -1,30 +1,29 @@
+import java.io.*;
 import java.util.*;
-import java.text.*;
 
 public class Solution {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        double payment = scanner.nextDouble();
-        scanner.close();
 
-        // Write your code here.
-        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
-        String us = nf.format(payment);
+        Scanner sc=new Scanner(System.in);
+        String A=sc.next();
+        /* Enter your code here. Print output to STDOUT. */
 
-        nf = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
-        String india = nf.format(payment);
-
-        nf = NumberFormat.getCurrencyInstance(Locale.CHINA);
-        String china = nf.format(payment);
-
-        nf = NumberFormat.getCurrencyInstance(Locale.FRANCE);
-        String france = nf.format(payment);
-
-        System.out.println("US: " + us);
-        System.out.println("India: " + india);
-        System.out.println("China: " + china);
-        System.out.println("France: " + france);
+        char begin = '0';
+        char end = '0';
+        int fl = 0;
+        for (int i = 0; i < A.length() / 2; i++){
+            begin = A.charAt(i);
+            end = A.charAt(A.length() - i - 1);
+            if (begin != end) {
+                fl = 1;
+                break;
+            }
+        }
+        if (fl == 1) {
+            System.out.println("No");
+        } else {
+            System.out.println("Yes");
+        }
     }
 }
-
