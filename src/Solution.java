@@ -1,48 +1,59 @@
-import java.util.*;
+import java.io.*;
+import java.math.*;
 import java.security.*;
-public class Solution {
-    public static void main(String[] args) {
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
 
-        DoNotTerminate.forbidExit();
+import static java.util.Calendar.*;
+class Result {
 
-        try {
-            Scanner in = new Scanner(System.in);
-            int n = in .nextInt();
-            in.close();
-            //String s=???; Complete this line below
-
-            //Write your code here
-            String s = Integer.toString(n);
-
-
-            if (n == Integer.parseInt(s)) {
-                System.out.println("Good job");
-            } else {
-                System.out.println("Wrong answer.");
-            }
-        } catch (DoNotTerminate.ExitTrappedException e) {
-            System.out.println("Unsuccessful Termination!!");
+    /*
+     * Complete the 'findDay' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts following parameters:
+     *  1. INTEGER month
+     *  2. INTEGER day
+     *  3. INTEGER year
+     */
+    public static String findDay(int month, int day, int year) {
+        Calendar c = new GregorianCalendar(year, month - 1, day);
+        int i = c.get(Calendar.DAY_OF_WEEK);
+        switch (i) {
+            case SUNDAY: return "SUNDAY";
+            case MONDAY: return "MONDAY";
+            case TUESDAY: return "TUESDAY";
+            case WEDNESDAY: return "WEDNESDAY";
+            case THURSDAY: return "THURSDAY";
+            case FRIDAY: return "FRIDAY";
+            case SATURDAY: return "SATURDAY";
+            default: return " ";
         }
     }
+
 }
 
-//The following class will prevent you from terminating the code using exit(0)!
-class DoNotTerminate {
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-    public static class ExitTrappedException extends SecurityException {
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
 
-        private static final long serialVersionUID = 1;
-    }
+        int month = Integer.parseInt(firstMultipleInput[0]);
 
-    public static void forbidExit() {
-        final SecurityManager securityManager = new SecurityManager() {
-            @Override
-            public void checkPermission(Permission permission) {
-                if (permission.getName().contains("exitVM")) {
-                    throw new ExitTrappedException();
-                }
-            }
-        };
-        System.setSecurityManager(securityManager);
+        int day = Integer.parseInt(firstMultipleInput[1]);
+
+        int year = Integer.parseInt(firstMultipleInput[2]);
+
+        String res = Result.findDay(month, day, year);
+
+        bufferedWriter.write(res);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
     }
 }
